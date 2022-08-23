@@ -1,0 +1,39 @@
+print("Welcome to Pokemon Top Trumps!")
+print("Player 1, your pokemon is...")
+
+#1. Generate a random number between 1 and 151 to use as the Pokemon ID number:
+import random
+pokemon_number = (random.randint(1,151))
+
+#2. Using the Pokemon API get a Pokemon based on its ID number:
+url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number)
+
+#3. Create a dictionary that contains the returned pokemon's name, id, height and weight:
+response = requests.get(url)
+pokemon = response.json()
+
+pprint(pokemon["name"])
+print("ID Number:")
+pprint(pokemon["id"])
+print("Height:")
+pprint(pokemon["height"])
+print("Weight:")
+pprint(pokemon["weight"])
+
+#4. Get another random pokemon for their opponent:
+print("Player 2, your pokemon is...")
+pokemon_number = (random.randint(1,151))
+url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number)
+response = requests.get(url)
+pokemon = response.json()
+
+pprint(pokemon["name"])
+print("ID Number:")
+pprint(pokemon["id"])
+print("Height:")
+pprint(pokemon["height"])
+print("Weight:")
+pprint(pokemon["weight"])
+
+#5. Ask the user which stat they want to use (id, height or weight)
+input("Which stat do you want to use?")
