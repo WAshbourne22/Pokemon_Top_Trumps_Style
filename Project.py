@@ -53,11 +53,10 @@ print(opponent_pokemon["weight"])
 my_stat = my_pokemon[stat_choice]
 opponent_stat = opponent_pokemon[stat_choice]
 
-# If statements for win lose or draw
+# Correct if statements for win, lose or draw
 if my_stat > opponent_stat:
     print('Congratulations, you win!')
 elif my_stat < opponent_stat:
     print('No win this time')
 else:
     print('It looks like a Draw!')
-
