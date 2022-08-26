@@ -2,6 +2,7 @@ import random
 import requests
 import time
 
+
 # Function to collect random pokemon
 def random_pokemon():
     pokemon_number = random.randint(1, 151)
@@ -15,51 +16,41 @@ def random_pokemon():
         'weight': pokemon['weight'],
     }
 
+
+# added a score function
+def updateScore(score):
+    score += 1
+    return score
+
+
+# added some variables so that we can display the score at the bottom.
+# counter so that we can play the game 3 times
+my_score = 0
+opponent_score = 0
+counter = 1
+
+
+# function to output the final winner
+def calcScore(my_score, opponent_score):
+    if my_score == opponent_score:
+        print("We have a tie")
+    elif opponent_score > my_score:
+        print("The computer beat you")
+    else:
+        print("You beat the computer! Congrats!!")
+
+
+# Game Intro
 # Printing out Pokemon name along with stats
 print("Welcome to Pokemon Top Trumps!")
-print("Pick a stat (ID, Height, Weight).")
+print("\nPick a stat (ID, Height, Weight).")
 print("If it's higher than your opponent's, you win!")
+print("It's time to play, Best out of 3!")
+print("\nPick a stat (ID, Height, Weight).")
+print("\nIf it's higher than your opponent's, you win!")
 print("If it's lower, you lose.")
 print("If it's the same, you draw.")
-print("Your pokemon is...")
 
-my_pokemon = random_pokemon()
-print(my_pokemon["name"])
-time.sleep(2)
-print("ID Number:")
-print(my_pokemon["id"])
-print("Height:")
-print(my_pokemon["height"])
-print("Weight:")
-print(my_pokemon["weight"])
-
-# Allow user to choice which stat they would like to choose
-stat_choice = input('Which stat do you want to use? (id, height, weight) ').lower()
-
-# Printing out opponent pokemon along with stats
-print("Your opponent's pokemon is...")
-opponent_pokemon = random_pokemon()
-my_pokemon = random_pokemon()
-print(opponent_pokemon["name"])
-time.sleep(2)
-print("ID Number:")
-print(opponent_pokemon["id"])
-print("Height:")
-print(opponent_pokemon["height"])
-print("Weight:")
-print(opponent_pokemon["weight"])
-
-# Using the stat choice chosen by the user to generate a comparison
-my_stat = my_pokemon[stat_choice]
-opponent_stat = opponent_pokemon[stat_choice]
-
-# Correct if statements for win, lose or draw
-if my_stat > opponent_stat:
-    print('Congratulations, you win!')
-elif my_stat < opponent_stat:
-    print('No win this time')
-else:
-    print('It looks like a Draw!')
 
 # High Score Programme
 
@@ -67,7 +58,7 @@ def get_high_score():
     # Default high score
     high_score = 0
 
-# Try to read the high score from a file
+    # Try to read the high score from a file
     try:
         high_score_file = open("high_score.txt", "r")
         high_score = int(high_score_file.read())
@@ -81,6 +72,7 @@ def get_high_score():
         print("I'm confused. Starting with no high score.")
 
     return high_score
+
 
 def save_high_score(new_high_score):
     try:
@@ -112,10 +104,60 @@ def main():
         # Yes: save to file
         print("Yea! New high score!")
         save_high_score(current_score)
+
+
+while counter < 4:
+
+    print("\nYour pokemon is...")
+
+    my_pokemon = random_pokemon()
+    print(my_pokemon["name"])
+    time.sleep(2)
+    print("ID Number:")
+    print(my_pokemon["id"])
+    print("Height:")
+    print(my_pokemon["height"])
+    print("Weight:")
+    print(my_pokemon["weight"])
+
+    # Allow user to choice which stat they would like to choose
+    stat_choice = input("\nWhich stat do you want to use? (id, height, weight) ").lower()
+
+    # Printing out opponent pokemon along with stats
+    print("\nYour opponent's pokemon is...")
+    opponent_pokemon = random_pokemon()
+    my_pokemon = random_pokemon()
+    print(opponent_pokemon["name"])
+    time.sleep(2)
+    print("ID Number:")
+    print(opponent_pokemon["id"])
+    print("Height:")
+    print(opponent_pokemon["height"])
+    print("Weight:")
+    print(opponent_pokemon["weight"])
+
+    # Using the stat choice chosen by the user to generate a comparison
+    my_stat = my_pokemon[stat_choice]
+    opponent_stat = opponent_pokemon[stat_choice]
+
+    # Correct if statements for win, lose or draw
+    # and update score
+    if my_stat > opponent_stat:
+        print("\nCongratulations, you win this round")
+        my_score = updateScore(my_score)
+        print("\nYour score: ", my_score, "Computer score: ", opponent_score)
+    elif my_stat < opponent_stat:
+        print("\nNo win this time")
+        opponent_score = updateScore(opponent_score)
+        print("\nYour score: ", my_score, "Computer score: ", opponent_score)
     else:
         print("Better luck next time.")
+        print('\nIt looks like a Draw!')
 
+    counter += 1
 
 # Call the main function, start up the game
 if __name__ == "__main__":
     main()
+# call function to output final winner from the game (all 3 rounds)
+calcScore(my_score, opponent_score)
