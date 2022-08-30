@@ -33,23 +33,21 @@ counter = 1
 # function to output the final winner
 def calcScore(my_score, opponent_score):
     if my_score == opponent_score:
-        print("We have a tie")
+        print("\nWe have a tie")
     elif opponent_score > my_score:
-        print("The computer beat you")
+        print("\nIn best out of three, the computer beat you")
     else:
-        print("You beat the computer! Congrats!!")
+        print("\nIn best out of three, you beat the computer! Congrats!!")
 
 
 # Game Intro
 # Printing out Pokemon name along with stats
 print("Welcome to Pokemon Top Trumps!")
+time.sleep(2)
 print("\nPick a stat (ID, Height, Weight).")
 print("If it's higher than your opponent's, you win!")
-print("It's time to play, Best out of 3!")
-print("\nPick a stat (ID, Height, Weight).")
-print("\nIf it's higher than your opponent's, you win!")
-print("If it's lower, you lose.")
-print("If it's the same, you draw.")
+time.sleep(2)
+print("It's time to play, best out of 3!")
 
 
 # High Score Programme
@@ -63,13 +61,13 @@ def get_high_score():
         high_score_file = open("high_score.txt", "r")
         high_score = int(high_score_file.read())
         high_score_file.close()
-        print("The high score is", high_score)
+        print("\nThe high score is", high_score)
     except IOError:
         # Error reading file, no high score
-        print("There is no high score yet.")
+        print("\nThere is no high score yet.")
     except ValueError:
         # There's a file there, but it doesn't understand the number.
-        print("I'm confused. Starting with no high score.")
+        print("\nI'm confused. Starting with no high score.")
 
     return high_score
 
@@ -94,15 +92,15 @@ def main():
     current_score = 0
     try:
         # Ask the user for their score
-        current_score = int(input("What is your score? "))
+        current_score = int(input("\nWhat is your score? "))
     except ValueError:
         # Error, they didn't type a number
-        print("I don't understand what you typed.")
+        print("\nI don't understand what you typed.")
 
     # See if we have a new high score
     if current_score > high_score:
         # Yes: save to file
-        print("Yea! New high score!")
+        print("\nYay! New high score!")
         save_high_score(current_score)
 
 
@@ -123,6 +121,8 @@ while counter < 4:
     print("Weight:")
     print(my_pokemon["weight"])
 
+    time.sleep(2)
+
     # Allow user to choose which stat they would like to choose
     stat_choice = input("\nWhich stat do you want to use? (id, height, weight) ").lower()
 
@@ -138,6 +138,7 @@ while counter < 4:
     print(opponent_pokemon["height"])
     print("Weight:")
     print(opponent_pokemon["weight"])
+    time.sleep(2)
 
     # Using the stat choice chosen by the user to generate a comparison
     my_stat = int(my_pokemon[stat_choice])
