@@ -137,8 +137,8 @@ while counter < 4:
     print(opponent_pokemon["weight"])
 
     # Using the stat choice chosen by the user to generate a comparison
-    my_stat = my_pokemon[stat_choice]
-    opponent_stat = opponent_pokemon[stat_choice]
+    my_stat = int(my_pokemon[stat_choice])
+    opponent_stat = int(opponent_pokemon[stat_choice])
 
     # Correct if statements for win, lose or draw
     # and update score
