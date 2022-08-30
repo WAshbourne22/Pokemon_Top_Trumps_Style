@@ -106,8 +106,11 @@ def main():
         save_high_score(current_score)
 
 
+# Counter to allow the game to be played 3 times.
+# This can be changed should we want there to be more than 3 rounds
 while counter < 4:
 
+    # User's pokemon
     print("\nYour pokemon is...")
 
     my_pokemon = random_pokemon()
@@ -120,7 +123,7 @@ while counter < 4:
     print("Weight:")
     print(my_pokemon["weight"])
 
-    # Allow user to choice which stat they would like to choose
+    # Allow user to choose which stat they would like to choose
     stat_choice = input("\nWhich stat do you want to use? (id, height, weight) ").lower()
 
     # Printing out opponent pokemon along with stats
