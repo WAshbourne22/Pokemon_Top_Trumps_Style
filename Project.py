@@ -141,8 +141,8 @@ while counter < 4:
     time.sleep(2)
 
     # Using the stat choice chosen by the user to generate a comparison
-    my_stat = int(my_pokemon[stat_choice])
-    opponent_stat = int(opponent_pokemon[stat_choice])
+    my_stat = float(my_pokemon[stat_choice])
+    opponent_stat = float(opponent_pokemon[stat_choice])
 
     # Correct if statements for win, lose or draw
     # and update score
